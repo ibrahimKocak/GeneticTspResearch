@@ -64,10 +64,8 @@ public class PathX implements Map.Entry<List<Integer>, Integer> {
     }
 
     void checkDistance() {
-        if (distance.length == 0) {
-            Logger LOGGER = Logger.getLogger(this.getClass().getSimpleName());
-            LOGGER.warning("Attention!!! Distance values not set for " + this.getClass().getSimpleName() + ".class.");
-        }
+        if (distance.length == 0)
+            throw new RuntimeException("Attention!!! Distance values not set for " + this.getClass().getSimpleName() + ".class.");
     }
 
     public boolean equals(PathX pathX) {
