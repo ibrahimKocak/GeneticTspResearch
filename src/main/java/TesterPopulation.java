@@ -1,17 +1,21 @@
 import Populations.Population;
 import TesterParamManager.TesterParamManager;
 
-public class TesterPopulation implements Runnable{
+import java.io.Serializable;
 
-    private final int testCount, iterationCount;
+public class TesterPopulation implements Runnable, Serializable {
+
+    private final String name;
+    private final int iterationCount;
     TesterParamManager testerParamManager;
     private Population parents, children;
 
-     TesterPopulation(int testCount, int iterationCount, TesterParamManager testerParamManager) {
+    TesterPopulation(String name, int iterationCount, TesterParamManager testerParamManager) {
 
-        this.testCount = testCount;
+        this.name = name;
         this.iterationCount = iterationCount;
         this.testerParamManager = testerParamManager;
+        //this.testerParamManager = SerializationUtils.clone(testerParamManager);
     }
 
     private boolean isManagerOk() {
@@ -30,17 +34,16 @@ public class TesterPopulation implements Runnable{
         return isOk;
     }
 
+    private Thread t;
+
     public void start() {
 
         if (!isManagerOk())
             return;
 
-        System.out.println("\n");
-
-        for (int i = 0; i < testCount; i++) {
-
-            System.out.print(this.getClass().getSimpleName() + " " + i + "\n");
-            run();
+        if (t == null) {
+            t = new Thread(this);
+            t.start();
         }
     }
 
@@ -61,6 +64,7 @@ public class TesterPopulation implements Runnable{
                 parentSelection();
             }
         }
+        System.out.println(name + "->");
         parents.printBestValue();
         System.out.println("Time : " + (System.currentTimeMillis() - startTime) / 1000 + "\n");
     }
