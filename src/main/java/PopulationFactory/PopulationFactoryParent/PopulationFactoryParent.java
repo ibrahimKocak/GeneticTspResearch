@@ -2,7 +2,9 @@ package PopulationFactory.PopulationFactoryParent;
 
 import Populations.PopulationParent;
 
-public abstract class PopulationFactoryParent {
+import java.io.Serializable;
+
+public abstract class PopulationFactoryParent implements Serializable {
 
     protected PopulationParent population;
 

@@ -1,10 +1,10 @@
 package Selection;
 
 import Populations.Population;
-import Populations.PopulationChild;
-import Populations.PopulationParent;
 
-public interface ISelection {
+import java.io.Serializable;
+
+public interface ISelection extends Serializable {
 
     void naturalSelection(Population parents, Population children);
 }

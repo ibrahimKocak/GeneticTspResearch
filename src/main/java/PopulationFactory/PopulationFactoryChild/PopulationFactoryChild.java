@@ -4,12 +4,11 @@ import Model.PathX;
 import Populations.Population;
 import Populations.PopulationChild;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
-public abstract class PopulationFactoryChild {
+public abstract class PopulationFactoryChild implements Serializable {
 
     protected PopulationChild populationNew;
     protected int length;
@@ -29,8 +28,8 @@ public abstract class PopulationFactoryChild {
 
         for (int i = 0; i < count; i++) {
             populationNew.add(new PathX(new ArrayList<>()));
-            parent.add(population.get(i%population.size()));
-            parent_temp.add(new PathX(population.get(i%population.size())));
+            parent.add(population.get(i % population.size()));
+            parent_temp.add(new PathX(population.get(i % population.size())));
         }
         Collections.shuffle(parent_temp);
 

@@ -1,11 +1,8 @@
 package TesterParamManager;
 
-import Mutation.IMutation;
-import PopulationFactory.PopulationFactoryChild.PopulationFactoryChild;
-import PopulationFactory.PopulationFactoryParent.PopulationFactoryParent;
-import Selection.ISelection;
+import java.io.Serializable;
 
-public class TesterParamManager {
+public class TesterParamManager implements Serializable {
 
     private int parentCount;
     private int childCount;
