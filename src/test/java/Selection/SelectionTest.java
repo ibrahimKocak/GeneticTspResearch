@@ -27,14 +27,14 @@ public class SelectionTest {
         population_parent = new PopulationParent();
         population_child = new PopulationChild();
 
-        population_parent.add(new PathX(new ArrayList<>(Arrays.asList(0,1,2,3))));
-        population_parent.add(new PathX(new ArrayList<>(Arrays.asList(0,1,3,2))));
-        population_parent.add(new PathX(new ArrayList<>(Arrays.asList(0,2,1,3))));
-        population_parent.add(new PathX(new ArrayList<>(Arrays.asList(0,2,3,1))));
+        population_parent.add(new PathX(new ArrayList<>(Arrays.asList(0, 1, 2, 3))));
+        population_parent.add(new PathX(new ArrayList<>(Arrays.asList(0, 1, 3, 2))));
+        population_parent.add(new PathX(new ArrayList<>(Arrays.asList(0, 2, 1, 3))));
+        population_parent.add(new PathX(new ArrayList<>(Arrays.asList(0, 2, 3, 1))));
 
-        population_child.add(new PathX(new ArrayList<>(Arrays.asList(1,2,3,0))));
-        population_child.add(new PathX(new ArrayList<>(Arrays.asList(1,2,0,3))));
-        population_child.add(new PathX(new ArrayList<>(Arrays.asList(1,3,0,2))));
+        population_child.add(new PathX(new ArrayList<>(Arrays.asList(1, 2, 3, 0))));
+        population_child.add(new PathX(new ArrayList<>(Arrays.asList(1, 2, 0, 3))));
+        population_child.add(new PathX(new ArrayList<>(Arrays.asList(1, 3, 0, 2))));
         population_child.add(new PathX(new ArrayList<>(population_parent.get(3).getKey())));   //that included in population_parent
 
 
@@ -55,7 +55,7 @@ public class SelectionTest {
         setParams();
         selection = new SelectionByBetterThanMax();
 
-        selection.naturalSelection(population_parent,population_child);
+        selection.naturalSelection(population_parent, population_child);
 
         assert (population_parent.get(0).getValue().equals(0));
         assert (population_parent.get(1).getValue().equals(5));
@@ -67,9 +67,9 @@ public class SelectionTest {
     void selectionBySortTest() {
 
         setParams();
-        selection = new SelectionBySort();
+        selection = new SelectionBySorting();
 
-        selection.naturalSelection(population_parent,population_child);
+        selection.naturalSelection(population_parent, population_child);
 
         assert (population_parent.get(0).getValue().equals(0));
         assert (population_parent.get(1).getValue().equals(5));
@@ -81,9 +81,9 @@ public class SelectionTest {
     void selectionByIndexTest() {
 
         setParams();
-        selection = new SelectionByIndex();
+        selection = new SelectionByIndexing();
 
-        selection.naturalSelection(population_parent,population_child);
+        selection.naturalSelection(population_parent, population_child);
 
         assert (population_parent.get(0).getValue().equals(0));
         assert (population_parent.get(1).getValue().equals(10));
