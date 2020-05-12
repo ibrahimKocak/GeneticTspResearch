@@ -2,10 +2,6 @@ package PopulationFactory.PopulationFactoryChild;
 
 import Model.DistanceInstance1;
 import Model.PathX;
-import PopulationFactory.PopulationFactoryChild.ChildCreationTemplate;
-import PopulationFactory.PopulationFactoryChild.PopulationFactoryChild;
-import PopulationFactory.PopulationFactoryChild.PopulationFactoryChildByAdding;
-import PopulationFactory.PopulationFactoryChild.PopulationFactoryChildByIndexing;
 import PopulationFactory.PopulationFactoryParent.PopulationFactoryParent;
 import PopulationFactory.PopulationFactoryParent.PopulationFactoryParentRandom;
 import Populations.Population;
@@ -59,8 +55,8 @@ public class PopulationFactoryChildTest {
         populationFactoryChild = new PopulationFactoryChildByIndexing();
         random = new Random();
 
-        PathX pathX0 = new PathX(new ArrayList<>(Arrays.asList(0,1,2,3,4)));
-        PathX pathX1 = new PathX(new ArrayList<>(Arrays.asList(4,3,2,1,0)));
+        PathX pathX0 = new PathX(new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4)));
+        PathX pathX1 = new PathX(new ArrayList<>(Arrays.asList(4, 3, 2, 1, 0)));
 
         population = new PopulationParent();
         population.add(pathX0);
