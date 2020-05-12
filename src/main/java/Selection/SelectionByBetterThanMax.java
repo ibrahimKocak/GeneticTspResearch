@@ -2,8 +2,6 @@ package Selection;
 
 import Model.PathX;
 import Populations.Population;
-import Populations.PopulationChild;
-import Populations.PopulationParent;
 
 import java.util.Collections;
 import java.util.Comparator;

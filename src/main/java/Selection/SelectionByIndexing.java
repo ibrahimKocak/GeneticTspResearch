@@ -2,10 +2,8 @@ package Selection;
 
 import Model.PathX;
 import Populations.Population;
-import Populations.PopulationChild;
-import Populations.PopulationParent;
 
-public class SelectionByIndex implements ISelection {
+public class SelectionByIndexing implements ISelection {
 
     @Override
     public void naturalSelection(Population parents, Population children) {

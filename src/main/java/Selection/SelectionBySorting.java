@@ -2,13 +2,11 @@ package Selection;
 
 import Model.PathX;
 import Populations.Population;
-import Populations.PopulationChild;
-import Populations.PopulationParent;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class SelectionBySort implements ISelection {
+public class SelectionBySorting implements ISelection {
 
     public void naturalSelection(Population parents, Population children) {
 
