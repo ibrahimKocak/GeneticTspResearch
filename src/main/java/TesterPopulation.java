@@ -15,7 +15,6 @@ public class TesterPopulation implements Runnable, Serializable {
         this.name = name;
         this.iterationCount = iterationCount;
         this.testerParamManager = testerParamManager;
-        //this.testerParamManager = SerializationUtils.clone(testerParamManager);
     }
 
     private boolean isManagerOk() {
