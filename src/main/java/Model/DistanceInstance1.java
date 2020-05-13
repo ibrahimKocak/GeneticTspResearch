@@ -32,4 +32,9 @@ public class DistanceInstance1 implements IDistanceValues {
     public int[][] getValues() {
         return distance;
     }
+
+    @Override
+    public int getLength() {
+        return distance.length;
+    }
 }
