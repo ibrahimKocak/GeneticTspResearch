@@ -17,28 +17,23 @@ public class TesterPopulation implements Runnable, Serializable {
         this.testerParamManager = testerParamManager;
     }
 
-    private boolean isManagerOk() {
-
-        boolean isOk = true;
+    private void checkManager() {
 
         if (testerParamManager.getParentCount() > 0 && testerParamManager.getManagerFactoryParent().size() == 0)
-            isOk = false;
-        else if (testerParamManager.getChildCount() > 0 && testerParamManager.getManagerFactoryChild().size() == 0)
-            isOk = false;
-        else if (testerParamManager.getMutationFactor() > 0 && testerParamManager.getManagerMutation().size() == 0)
-            isOk = false;
-        else if (testerParamManager.getManagerSelection().size() == 0)
-            isOk = false;
+            throw new RuntimeException("\n"+name+": No any population factory parent in tester param manager");
 
-        return isOk;
+        else if (testerParamManager.getChildCount() > 0 && testerParamManager.getManagerFactoryChild().size() == 0)
+            throw new RuntimeException("\n"+name+": No any population factory child in tester param manager");
+
+        else if (testerParamManager.getManagerSelection().size() == 0)
+            throw new RuntimeException("\n"+name+": No any selection in tester param manager");
     }
 
     private Thread t;
 
     public void start() {
 
-        if (!isManagerOk())
-            return;
+        checkManager();
 
         if (t == null) {
             t = new Thread(this);
