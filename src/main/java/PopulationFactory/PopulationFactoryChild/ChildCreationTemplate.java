@@ -24,11 +24,4 @@ public class ChildCreationTemplate {
     public boolean[] getRandomTemplate() {
         return booleans;
     }
-
-    private void printTemplate() {
-
-        for (Boolean b : booleans)
-            System.out.print(b + "\t");
-        System.out.print("\n");
-    }
 }
