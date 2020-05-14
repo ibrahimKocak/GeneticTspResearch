@@ -1,12 +1,9 @@
 import Model.DistanceInstance1;
 import Model.PathX;
-import Mutation.MutationInsert;
-import PopulationFactory.PopulationFactoryChild.PopulationFactoryChildByAdding;
-import PopulationFactory.PopulationFactoryParent.PopulationFactoryParentRandom;
-import Selection.SelectionByBetterThanMax;
-import Selection.SelectionBySorting;
-import TesterParamManager.*;
-import org.apache.commons.lang3.SerializationUtils;
+import TestScenario.Pg.Ca.Ms.PgCaMsSb;
+import TestScenario.Pr.Ca.Mi.PrCaMiSb;
+import TestScenario.Pr.Ca.Mi.PrCaMiSi;
+import TestScenario.Pr.Ca.Ms.PrCaMsSb;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,29 +33,18 @@ public class Main {
 
         PathX.setDistanceValues((new DistanceInstance1()));
 
-        TesterParamManager sharingParams = new TesterParamManager();
+        List<Tester> testerList = new ArrayList<>();
 
-        sharingParams.setManagerFactoryParent(20, new ManagerFactoryParent());
-        sharingParams.setManagerFactoryChild(20, 1, new ManagerFactoryChild());
-        sharingParams.setManagerMutation(1, new ManagerMutation());
-        sharingParams.setManagerSelection(new ManagerSelection());
+        testerList.add(new Tester(new PrCaMiSb(20, 20, 1, 1), 200000));
+        testerList.add(new Tester(new PrCaMiSi(20, 20, 1, 1), 200000));
+        testerList.add(new Tester(new PrCaMsSb(20, 20, 1, 1), 200000));
+        testerList.add(new Tester(new PgCaMsSb(20, 20, 1, 1), 200000));
 
-        TesterParamManager pRcAmIsB = SerializationUtils.clone(sharingParams);
-
-        pRcAmIsB.getManagerFactoryParent().add(new PopulationFactoryParentRandom());
-        pRcAmIsB.getManagerFactoryChild().add(new PopulationFactoryChildByAdding());
-        pRcAmIsB.getManagerMutation().add(new MutationInsert());
-
-        TesterParamManager pRcAmIsS = SerializationUtils.clone(pRcAmIsB);
-
-        pRcAmIsB.getManagerSelection().add(new SelectionByBetterThanMax());
-        pRcAmIsS.getManagerSelection().add(new SelectionBySorting());
-
-
-        List<TesterPopulation> list = new ArrayList<>();
-        list.add(new TesterPopulation("pop0", 200000, pRcAmIsB));
-        list.add(new TesterPopulation("pop1", 200000, pRcAmIsS));
-
-        list.forEach(TesterPopulation::start);
+        testerList.forEach(Tester::start);
+        testerList.forEach(tester -> {
+            tester.start();
+            System.out.println(tester.getScenarioPCMS().toString());
+        });
+        System.out.println();
     }
 }
