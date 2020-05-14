@@ -2,12 +2,11 @@ package PopulationFactory.PopulationFactoryChild;
 
 import Model.PathX;
 import Populations.Population;
-import Populations.PopulationChild;
 
 public class PopulationFactoryChildByAdding extends ChildCreationPreparatory {
 
     @Override
-    public PopulationChild getPopulation(Population population, int count) {
+    public void createPopulation(Population population, int count) {
 
         prepareToCreate(population, count);
 
@@ -17,7 +16,10 @@ public class PopulationFactoryChildByAdding extends ChildCreationPreparatory {
                 populationNew.get(i).getKey().add(parent_temp.get(i).getKey().get(j));
         }
         populationNew.forEach(PathX::commit);
+    }
 
+    @Override
+    public Population getPopulation() {
         return populationNew;
     }
 }

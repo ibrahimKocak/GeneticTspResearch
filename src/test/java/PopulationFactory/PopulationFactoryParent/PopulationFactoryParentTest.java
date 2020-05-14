@@ -24,7 +24,8 @@ public class PopulationFactoryParentTest {
 
         populationFactoryParent = new PopulationFactoryParentRandom();
 
-        Population population = populationFactoryParent.getPopulation(5);
+        populationFactoryParent.createPopulation(5);
+        Population population = populationFactoryParent.getPopulation();
 
         assert (population.size() == 5);
         assert (population.get(0).getValue() != 0);
@@ -35,7 +36,8 @@ public class PopulationFactoryParentTest {
 
         populationFactoryParent = new PopulationFactoryParentGreedy();
 
-        Population population = populationFactoryParent.getPopulation(1);
+        populationFactoryParent.createPopulation(1);
+        Population population = populationFactoryParent.getPopulation();
 
         PathX pathx = new PathX(new ArrayList<>(Arrays.asList(0, 12, 14, 18, 20, 7, 4, 11, 9, 8, 16, 13, 15, 1, 5, 17, 19, 6, 2, 10, 3)));
 

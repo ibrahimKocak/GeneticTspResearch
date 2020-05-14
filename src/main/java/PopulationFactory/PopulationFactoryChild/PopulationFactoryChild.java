@@ -1,18 +1,17 @@
 package PopulationFactory.PopulationFactoryChild;
 
 import Model.PathX;
+import PopulationFactory.IPopulationFactory;
 import Populations.Population;
 import Populations.PopulationChild;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class PopulationFactoryChild implements Serializable {
+public abstract class PopulationFactoryChild implements IPopulationFactory {
 
     protected PopulationChild populationNew;
     protected int length;
-
 
     Population parent, parent_temp;
     boolean[] template;
@@ -38,6 +37,5 @@ public abstract class PopulationFactoryChild implements Serializable {
 
     abstract void prepareToCreate(Population population, int count);
 
-    public abstract PopulationChild getPopulation(Population population, int count);
-
+    public abstract void createPopulation(Population population, int count);
 }

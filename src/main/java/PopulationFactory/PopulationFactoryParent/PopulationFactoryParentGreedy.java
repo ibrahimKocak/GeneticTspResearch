@@ -1,6 +1,7 @@
 package PopulationFactory.PopulationFactoryParent;
 
 import Model.PathX;
+import Populations.Population;
 import Populations.PopulationParent;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.logging.Logger;
 public class PopulationFactoryParentGreedy extends PopulationFactoryParent {
 
     @Override
-    public PopulationParent getPopulation(int count) {
+    public void createPopulation(int count) {
 
         if (count > PathX.getDistance().length) {
             Logger LOGGER = Logger.getLogger(this.getClass().getName());
@@ -49,6 +50,10 @@ public class PopulationFactoryParentGreedy extends PopulationFactoryParent {
             }
             population.add(new PathX(list));
         }
+    }
+
+    @Override
+    public Population getPopulation() {
         return population;
     }
 }

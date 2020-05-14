@@ -35,11 +35,13 @@ public class PopulationFactoryChildTest {
         population = new PopulationParent();
         random = new Random();
 
-        population = populationFactoryParent.getPopulation(2);
+        populationFactoryParent.createPopulation(2);
+        population = populationFactoryParent.getPopulation();
 
         PopulationFactory.PopulationFactoryChild.ChildCreationTemplate childCreationTemplate = new PopulationFactory.PopulationFactoryChild.ChildCreationTemplate();
         childCreationTemplate.buildRandomTemplate();
-        populationNew = populationFactoryChild.getPopulation(population, 5);
+        populationFactoryChild.createPopulation(population, 5);
+        populationNew = populationFactoryChild.getPopulation();
 
         assert (populationNew.size() == 5);
 
@@ -62,7 +64,8 @@ public class PopulationFactoryChildTest {
         population.add(pathX0);
         population.add(pathX1);
 
-        populationNew = populationFactoryChild.getPopulation(population, 5);
+        populationFactoryChild.createPopulation(population, 5);
+        populationNew = populationFactoryChild.getPopulation();
 
         assert (populationNew.size() == 5);
 
