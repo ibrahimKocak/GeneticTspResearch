@@ -8,14 +8,10 @@ import java.util.Comparator;
 
 public abstract class Population extends ArrayList<PathX> {
 
-    public String name;
+    public PopulationName name;
 
-    public String getName() {
+    public PopulationName getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void printBestValue() {

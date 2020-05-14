@@ -21,8 +21,8 @@ public class PopulationTest {
         PopulationChild populationChild = new PopulationChild();
         PopulationParent populationParent = new PopulationParent();
 
-        assert (populationChild.getName().equals("Children"));
-        assert (populationParent.getName().equals("Parents"));
+        assert (populationChild.getName().equals(PopulationName.Children));
+        assert (populationParent.getName().equals(PopulationName.Parents));
     }
 
     @Test
