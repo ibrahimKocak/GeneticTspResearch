@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class PathX implements Map.Entry<List<Integer>, Integer> {
 
+    private static int[][] distance = {};
     private final List<Integer> cities;
     private int solution;
-    private static int[][] distance = {};
 
     public PathX(List<Integer> cities) {
 
@@ -22,6 +22,14 @@ public class PathX implements Map.Entry<List<Integer>, Integer> {
         checkDistance();
         cities = new ArrayList<>(pathX.cities);
         solution = pathX.solution;
+    }
+
+    public static int[][] getDistance() {
+        return distance;
+    }
+
+    public static void setDistanceValues(IDistanceValues distanceValues) {
+        distance = distanceValues.getValues();
     }
 
     public void commit() {
@@ -52,14 +60,6 @@ public class PathX implements Map.Entry<List<Integer>, Integer> {
     public Integer setValue(Integer value) {
         solution = value;
         return solution;
-    }
-
-    public static int[][] getDistance() {
-        return distance;
-    }
-
-    public static void setDistanceValues(IDistanceValues distanceValues) {
-        distance = distanceValues.getValues();
     }
 
     void checkDistance() {
