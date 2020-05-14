@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class ChildCreationTemplate {
 
-    private boolean[] booleans;
     private final Random random;
+    private boolean[] booleans;
 
     public ChildCreationTemplate() {
         random = new Random();
