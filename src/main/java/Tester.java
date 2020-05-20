@@ -1,24 +1,52 @@
+import Mutation.IMutation;
+import PopulationFactory.ChildPopulationFactory.ChildPopulationFactory;
+import PopulationFactory.ParentPopulationFactory.ParentPopulationFactory;
 import Populations.Population;
-import TestScenario.ScenarioPCMS;
+import Selection.ISelection;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Random;
 
 public class Tester implements Runnable, Serializable {
 
-    private final String name;
-    private final int iterationCount;
-    private final ScenarioPCMS scenarioPCMS;
+    private final int parentCount, childCount, crossingOverFactor, mutationFactor, iterationCount;
+    private final List<ParentPopulationFactory> parentFactories;
+    private final List<ChildPopulationFactory> childFactories;
+    private final List<IMutation> mutations;
+    private final List<ISelection> selections;
+    private final Random random;
+    private String codeParentFactories = "", codeChildFactories = "", codeMutations = "", codeSelections = "";
     private Population parents, children;
     private Thread t;
 
-    Tester(ScenarioPCMS scenarioPCMS, int iterationCount) {
-
-        this.name = scenarioPCMS.getClass().getSimpleName();
+    public Tester(int parentCount, int childCount, int crossingOverFactor, int mutationFactor, int iterationCount) {
+        this.parentCount = parentCount;
+        this.childCount = childCount;
+        this.crossingOverFactor = crossingOverFactor;
+        this.mutationFactor = mutationFactor;
         this.iterationCount = iterationCount;
-        this.scenarioPCMS = scenarioPCMS;
+        parentFactories = new ArrayList<>();
+        childFactories = new ArrayList<>();
+        mutations = new ArrayList<>();
+        selections = new ArrayList<>();
+        random = new Random();
     }
 
     public void start() {
+
+        try {
+            if (parentFactories.size() < 1)
+                throw new Exception("Parent Factories is empty, add one.", new NoSuchElementException());
+            if (childFactories.size() < 1)
+                throw new Exception("Child Factories is empty, add one.", new NoSuchElementException());
+            if (selections.size() < 1)
+                throw new Exception("Selection is empty, add one.", new NoSuchElementException());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (t == null) {
             t = new Thread(this);
@@ -34,41 +62,62 @@ public class Tester implements Runnable, Serializable {
 
         for (int i = 0; i < iterationCount; i++) {
 
-            for (int j = 0; j < scenarioPCMS.getCrossingOverFactor(); j++) {
+            for (int j = 0; j < crossingOverFactor; j++) {
                 createChildren();
                 parentSelection();
             }
-            for (int j = 0; j < scenarioPCMS.getMutationFactor(); j++) {
-                mutation();
-                parentSelection();
-            }
+            if (mutations.size() > 0)
+                for (int j = 0; j < mutationFactor; j++) {
+                    mutation();
+                    parentSelection();
+                }
         }
-        System.out.println(name + "->");
+        System.out.println(codeParentFactories + codeChildFactories + codeMutations + codeSelections + "->");
         parents.printBestValue();
         System.out.println("Time : " + (System.currentTimeMillis() - startTime) / 1000 + "\n");
     }
 
     private void createParents() {
-        parents = scenarioPCMS.getPopulationParent();
+        ParentPopulationFactory factoryParent = parentFactories.get(random.nextInt(parentFactories.size()));
+        factoryParent.createPopulation(parentCount);
+        parents = factoryParent.getPopulation();
     }
 
     private void createChildren() {
-        children = scenarioPCMS.getPopulationChild(parents);
+        ChildPopulationFactory factoryChild = childFactories.get(random.nextInt(childFactories.size()));
+        factoryChild.createPopulation(parents, childCount);
+        children = factoryChild.getPopulation();
     }
 
     private void mutation() {
 
         children.forEach(pathX -> {
-            scenarioPCMS.getMutation().infect(pathX.getKey());
+            mutations.get(random.nextInt(mutations.size())).infect(pathX.getKey());
             pathX.commit();
         });
     }
 
     private void parentSelection() {
-        scenarioPCMS.getSelection().naturalSelection(parents, children);
+        selections.get(random.nextInt(parentFactories.size())).naturalSelection(parents, children);
     }
 
-    public ScenarioPCMS getScenarioPCMS() {
-        return scenarioPCMS;
+    public void add(ParentPopulationFactory parentFactory) {
+        parentFactories.add(parentFactory);
+        codeParentFactories += parentFactory.getCode();
+    }
+
+    public void add(ChildPopulationFactory childFactory) {
+        childFactories.add(childFactory);
+        codeChildFactories += childFactory.getCode();
+    }
+
+    public void add(IMutation mutation) {
+        mutations.add(mutation);
+        codeMutations += mutation.getCode();
+    }
+
+    public void add(ISelection selection) {
+        selections.add(selection);
+        codeSelections += selection.getCode();
     }
 }
