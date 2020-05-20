@@ -1,9 +1,12 @@
 import Model.DistanceInstance1;
 import Model.PathX;
-import TestScenario.Pg.Ca.Ms.PgCaMsSb;
-import TestScenario.Pr.Ca.Mi.PrCaMiSb;
-import TestScenario.Pr.Ca.Mi.PrCaMiSi;
-import TestScenario.Pr.Ca.Ms.PrCaMsSb;
+import Mutation.MutationInsert;
+import Mutation.MutationSwap;
+import PopulationFactory.ChildPopulationFactory.ChildPopulationFactoryByAdding;
+import PopulationFactory.ParentPopulationFactory.ParentPopulationFactoryGreedy;
+import PopulationFactory.ParentPopulationFactory.ParentPopulationFactoryRandom;
+import Selection.SelectionByBetterThanMax;
+import Selection.SelectionByIndexing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,16 +38,36 @@ public class Main {
 
         List<Tester> testerList = new ArrayList<>();
 
-        testerList.add(new Tester(new PrCaMiSb(20, 20, 1, 1), 200000));
-        testerList.add(new Tester(new PrCaMiSi(20, 20, 1, 1), 200000));
-        testerList.add(new Tester(new PrCaMsSb(20, 20, 1, 1), 200000));
-        testerList.add(new Tester(new PgCaMsSb(20, 20, 1, 1), 200000));
+        Tester tester0 = new Tester(20, 20, 1, 1, 200000);
+        tester0.add(new ParentPopulationFactoryRandom());
+        tester0.add(new ChildPopulationFactoryByAdding());
+        tester0.add(new MutationInsert());
+        tester0.add(new SelectionByBetterThanMax());
+
+        Tester tester1 = new Tester(20, 20, 1, 1, 200000);
+        tester1.add(new ParentPopulationFactoryRandom());
+        tester1.add(new ChildPopulationFactoryByAdding());
+        tester1.add(new MutationInsert());
+        tester1.add(new SelectionByIndexing());
+
+        Tester tester2 = new Tester(20, 20, 1, 1, 200000);
+        tester2.add(new ParentPopulationFactoryRandom());
+        tester2.add(new ChildPopulationFactoryByAdding());
+        tester2.add(new MutationSwap());
+        tester2.add(new SelectionByBetterThanMax());
+
+        Tester tester3 = new Tester(20, 20, 1, 1, 200000);
+        tester3.add(new ParentPopulationFactoryGreedy());
+        tester3.add(new ChildPopulationFactoryByAdding());
+        tester3.add(new MutationSwap());
+        tester3.add(new SelectionByBetterThanMax());
+
+        testerList.add(tester0);
+        testerList.add(tester1);
+        testerList.add(tester2);
+        testerList.add(tester3);
 
         testerList.forEach(Tester::start);
-        testerList.forEach(tester -> {
-            tester.start();
-            System.out.println(tester.getScenarioPCMS().toString());
-        });
         System.out.println();
     }
 }
