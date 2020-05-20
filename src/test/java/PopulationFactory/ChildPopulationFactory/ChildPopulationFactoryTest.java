@@ -1,9 +1,9 @@
-package PopulationFactory.PopulationFactoryChild;
+package PopulationFactory.ChildPopulationFactory;
 
 import Model.DistanceInstance1;
 import Model.PathX;
-import PopulationFactory.PopulationFactoryParent.PopulationFactoryParent;
-import PopulationFactory.PopulationFactoryParent.PopulationFactoryParentRandom;
+import PopulationFactory.ParentPopulationFactory.ParentPopulationFactory;
+import PopulationFactory.ParentPopulationFactory.ParentPopulationFactoryRandom;
 import Populations.Population;
 import Populations.PopulationParent;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class PopulationFactoryChildTest {
+public class ChildPopulationFactoryTest {
 
     Population population, populationNew;
-    PopulationFactoryParent populationFactoryParent;
-    PopulationFactoryChild populationFactoryChild;
+    ParentPopulationFactory parentPopulationFactory;
+    ChildPopulationFactory childPopulationFactory;
     ChildCreationTemplate childCreationTemplate;
     Random random;
 
@@ -30,18 +30,18 @@ public class PopulationFactoryChildTest {
     @Test
     void byAddingChildPopulationFactoryTest() {
 
-        populationFactoryParent = new PopulationFactoryParentRandom();
-        populationFactoryChild = new PopulationFactoryChildByAdding();
+        parentPopulationFactory = new ParentPopulationFactoryRandom();
+        childPopulationFactory = new ChildPopulationFactoryByAdding();
         population = new PopulationParent();
         random = new Random();
 
-        populationFactoryParent.createPopulation(2);
-        population = populationFactoryParent.getPopulation();
+        parentPopulationFactory.createPopulation(2);
+        population = parentPopulationFactory.getPopulation();
 
-        PopulationFactory.PopulationFactoryChild.ChildCreationTemplate childCreationTemplate = new PopulationFactory.PopulationFactoryChild.ChildCreationTemplate();
+        PopulationFactory.ChildPopulationFactory.ChildCreationTemplate childCreationTemplate = new PopulationFactory.ChildPopulationFactory.ChildCreationTemplate();
         childCreationTemplate.buildRandomTemplate();
-        populationFactoryChild.createPopulation(population, 5);
-        populationNew = populationFactoryChild.getPopulation();
+        childPopulationFactory.createPopulation(population, 5);
+        populationNew = childPopulationFactory.getPopulation();
 
         assert (populationNew.size() == 5);
 
@@ -54,7 +54,7 @@ public class PopulationFactoryChildTest {
     @Test
     void byIndexingChildPopulationFactoryTest() {
 
-        populationFactoryChild = new PopulationFactoryChildByIndexing();
+        childPopulationFactory = new ChildPopulationFactoryByIndexing();
         random = new Random();
 
         PathX pathX0 = new PathX(new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4)));
@@ -64,8 +64,8 @@ public class PopulationFactoryChildTest {
         population.add(pathX0);
         population.add(pathX1);
 
-        populationFactoryChild.createPopulation(population, 5);
-        populationNew = populationFactoryChild.getPopulation();
+        childPopulationFactory.createPopulation(population, 5);
+        populationNew = childPopulationFactory.getPopulation();
 
         assert (populationNew.size() == 5);
 

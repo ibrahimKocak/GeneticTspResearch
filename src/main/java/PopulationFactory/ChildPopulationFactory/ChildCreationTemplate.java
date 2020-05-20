@@ -1,4 +1,4 @@
-package PopulationFactory.PopulationFactoryChild;
+package PopulationFactory.ChildPopulationFactory;
 
 import Model.PathX;
 

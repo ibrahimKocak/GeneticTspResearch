@@ -1,8 +1,8 @@
-package PopulationFactory.PopulationFactoryChild;
+package PopulationFactory.ChildPopulationFactory;
 
 import Populations.Population;
 
-public abstract class ChildCreationPreparatory extends PopulationFactoryChild {
+public abstract class ChildPopulationFactoryCreationPreparatory extends ChildPopulationFactory {
 
     @Override
     protected void prepareToCreate(Population population, int count) {
