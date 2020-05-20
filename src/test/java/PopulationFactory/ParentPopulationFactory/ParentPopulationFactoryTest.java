@@ -1,4 +1,4 @@
-package PopulationFactory.PopulationFactoryParent;
+package PopulationFactory.ParentPopulationFactory;
 
 import Model.DistanceInstance1;
 import Model.PathX;
@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class PopulationFactoryParentTest {
+public class ParentPopulationFactoryTest {
 
-    PopulationFactoryParent populationFactoryParent;
+    ParentPopulationFactory parentPopulationFactory;
 
     @BeforeAll
     static void init() {
@@ -22,10 +22,10 @@ public class PopulationFactoryParentTest {
     @Test
     void randomParentFactoryTest() {
 
-        populationFactoryParent = new PopulationFactoryParentRandom();
+        parentPopulationFactory = new ParentPopulationFactoryRandom();
 
-        populationFactoryParent.createPopulation(5);
-        Population population = populationFactoryParent.getPopulation();
+        parentPopulationFactory.createPopulation(5);
+        Population population = parentPopulationFactory.getPopulation();
 
         assert (population.size() == 5);
         assert (population.get(0).getValue() != 0);
@@ -34,10 +34,10 @@ public class PopulationFactoryParentTest {
     @Test
     void greedyParentFactoryTest() {
 
-        populationFactoryParent = new PopulationFactoryParentGreedy();
+        parentPopulationFactory = new ParentPopulationFactoryGreedy();
 
-        populationFactoryParent.createPopulation(1);
-        Population population = populationFactoryParent.getPopulation();
+        parentPopulationFactory.createPopulation(1);
+        Population population = parentPopulationFactory.getPopulation();
 
         PathX pathx = new PathX(new ArrayList<>(Arrays.asList(0, 12, 14, 18, 20, 7, 4, 11, 9, 8, 16, 13, 15, 1, 5, 17, 19, 6, 2, 10, 3)));
 
