@@ -1,4 +1,4 @@
-package PopulationFactory.PopulationFactoryChild;
+package PopulationFactory.ChildPopulationFactory;
 
 import Model.PathX;
 import PopulationFactory.IPopulationFactory;
@@ -8,7 +8,7 @@ import Populations.PopulationChild;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class PopulationFactoryChild implements IPopulationFactory {
+public abstract class ChildPopulationFactory implements IPopulationFactory {
 
     protected PopulationChild populationNew;
     protected int length;

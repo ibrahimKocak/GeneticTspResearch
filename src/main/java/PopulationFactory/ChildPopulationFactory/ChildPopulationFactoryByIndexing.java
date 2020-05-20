@@ -1,9 +1,9 @@
-package PopulationFactory.PopulationFactoryChild;
+package PopulationFactory.ChildPopulationFactory;
 
 import Model.PathX;
 import Populations.Population;
 
-public class PopulationFactoryChildByIndexing extends ChildCreationPreparatory {
+public class ChildPopulationFactoryByIndexing extends ChildPopulationFactoryCreationPreparatory {
 
     @Override
     public void createPopulation(Population population, int count) {
@@ -27,5 +27,10 @@ public class PopulationFactoryChildByIndexing extends ChildCreationPreparatory {
     @Override
     public Population getPopulation() {
         return populationNew;
+    }
+
+    @Override
+    public String getCode() {
+        return "Ci";
     }
 }
