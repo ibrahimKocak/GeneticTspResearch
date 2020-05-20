@@ -1,9 +1,9 @@
-package PopulationFactory.PopulationFactoryParent;
+package PopulationFactory.ParentPopulationFactory;
 
 import PopulationFactory.IPopulationFactory;
 import Populations.PopulationParent;
 
-public abstract class PopulationFactoryParent implements IPopulationFactory {
+public abstract class ParentPopulationFactory implements IPopulationFactory {
 
     protected PopulationParent population;
 

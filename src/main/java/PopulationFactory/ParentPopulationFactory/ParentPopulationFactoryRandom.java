@@ -1,4 +1,4 @@
-package PopulationFactory.PopulationFactoryParent;
+package PopulationFactory.ParentPopulationFactory;
 
 import Model.PathX;
 import Populations.Population;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PopulationFactoryParentRandom extends PopulationFactoryParent {
+public class ParentPopulationFactoryRandom extends ParentPopulationFactory {
 
     @Override
     public void createPopulation(int count) {
@@ -31,5 +31,10 @@ public class PopulationFactoryParentRandom extends PopulationFactoryParent {
     @Override
     public Population getPopulation() {
         return population;
+    }
+
+    @Override
+    public String getCode() {
+        return "Pr";
     }
 }
