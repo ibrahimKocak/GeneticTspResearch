@@ -12,4 +12,9 @@ public class MutationSwap extends RandomTwoPoint implements IMutation {
 
         Collections.swap(list, points[0], points[1]);
     }
+
+    @Override
+    public String getCode() {
+        return "Ms";
+    }
 }

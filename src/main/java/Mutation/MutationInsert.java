@@ -12,4 +12,9 @@ public class MutationInsert extends RandomTwoPointSorted implements IMutation {
 
         Collections.rotate(list.subList(points[0], points[1] + 1), 1);
     }
+
+    @Override
+    public String getCode() {
+        return "Mi";
+    }
 }

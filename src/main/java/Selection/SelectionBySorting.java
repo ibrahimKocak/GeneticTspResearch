@@ -24,4 +24,9 @@ public class SelectionBySorting implements ISelection {
         parents.sort(Comparator.comparingInt(PathX::getValue));
         parents.removeAll(parents.subList(parent_size, parents.size()));
     }
+
+    @Override
+    public String getCode() {
+        return "Ss";
+    }
 }

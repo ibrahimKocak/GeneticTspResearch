@@ -24,4 +24,9 @@ public class SelectionByBetterThanMax implements ISelection {
             }
         }
     }
+
+    @Override
+    public String getCode() {
+        return "Sb";
+    }
 }

@@ -31,4 +31,9 @@ public class SelectionByIndexing implements ISelection {
                 parents.set(i, new PathX(children.get(i)));
         }
     }
+
+    @Override
+    public String getCode() {
+        return "Si";
+    }
 }

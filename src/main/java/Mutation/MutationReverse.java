@@ -12,4 +12,9 @@ public class MutationReverse extends RandomTwoPointSorted implements IMutation {
 
         Collections.reverse(list.subList(points[0], points[1] + 1));
     }
+
+    @Override
+    public String getCode() {
+        return "Mr";
+    }
 }
