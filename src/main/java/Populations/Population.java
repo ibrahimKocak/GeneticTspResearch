@@ -2,11 +2,9 @@ package Populations;
 
 import Model.PathX;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
-public abstract class Population extends ArrayList<PathX> {
+public abstract class Population extends ArrayList<PathX> implements IPopulation {
 
     public PopulationName name;
 
@@ -14,21 +12,26 @@ public abstract class Population extends ArrayList<PathX> {
         return name;
     }
 
-    public void printBestValue() {
-        System.out.println("Best:\t" + getBestValue().getKey() + "\t\t" + getBestValue().getValue());
-    }
-
+    @Override
     public PathX getBestValue() {
         return Collections.min(this, Comparator.comparingInt(PathX::getValue));
     }
 
-    public void print() {
+    public void printBestValue() {
 
-        System.out.println("\n\n" + this.name + "\n");
+        PathX bestPathX = getBestValue();
+        System.out.println("Best of " + name + "\n" + bestPathX.getKey() + "\t" + bestPathX.getValue().toString());
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder s = new StringBuilder();
+        s.append("\n").append(name).append("\n");
 
         for (int i = 0; i < this.size(); i++)
-            System.out.println(i + "\t" + this.get(i));
+            s.append(i).append("\t").append(this.get(i).getKey()).append("\t\t").append(this.get(i).getValue()).append("\n");
 
-        System.out.println("\n");
+        return s.toString();
     }
 }
