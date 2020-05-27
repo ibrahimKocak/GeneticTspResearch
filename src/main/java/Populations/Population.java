@@ -20,7 +20,7 @@ public abstract class Population extends ArrayList<PathX> implements IPopulation
     public void printBestValue() {
 
         PathX bestPathX = getBestValue();
-        System.out.println("Best of " + name + "\n" + bestPathX.getKey() + "\t" + bestPathX.getValue().toString());
+        System.out.println("Best of " + name + "\n" + bestPathX.getKey() + "\t" + bestPathX.getValue());
     }
 
     @Override
