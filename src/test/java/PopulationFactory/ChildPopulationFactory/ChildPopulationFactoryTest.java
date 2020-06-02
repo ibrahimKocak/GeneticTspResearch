@@ -19,7 +19,7 @@ public class ChildPopulationFactoryTest {
     ParentPopulationFactory parentPopulationFactory;
     ChildPopulationFactory childPopulationFactory;
     ChildCreationTemplate childCreationTemplate;
-    Random random;
+    Random random = new Random();
 
     @BeforeAll
     static void init() {
@@ -33,7 +33,6 @@ public class ChildPopulationFactoryTest {
         parentPopulationFactory = new ParentPopulationFactoryRandom();
         childPopulationFactory = new ChildPopulationFactoryByAdding();
         population = new PopulationParent();
-        random = new Random();
 
         parentPopulationFactory.createPopulation(2);
         population = parentPopulationFactory.getPopulation();
@@ -46,7 +45,7 @@ public class ChildPopulationFactoryTest {
         assert (populationNew.size() == 5);
 
         for (int i = 0; i < 5; i++) {
-            assert (populationNew.get((new Random()).nextInt(populationNew.size())).getKey().contains(i));
+            assert (populationNew.get((random).nextInt(populationNew.size())).getKey().contains(i));
             assert (populationNew.get(i).getKey().size() == population.get(0).getKey().size());
         }
     }
@@ -55,7 +54,6 @@ public class ChildPopulationFactoryTest {
     void byIndexingChildPopulationFactoryTest() {
 
         childPopulationFactory = new ChildPopulationFactoryByIndexing();
-        random = new Random();
 
         PathX pathX0 = new PathX(new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4)));
         PathX pathX1 = new PathX(new ArrayList<>(Arrays.asList(4, 3, 2, 1, 0)));
@@ -70,7 +68,7 @@ public class ChildPopulationFactoryTest {
         assert (populationNew.size() == 5);
 
         for (int i = 0; i < 5; i++)
-            assert (populationNew.get((new Random()).nextInt(populationNew.size())).getKey().contains(i));
+            assert (populationNew.get((random).nextInt(populationNew.size())).getKey().contains(i));
     }
 
     @Test
