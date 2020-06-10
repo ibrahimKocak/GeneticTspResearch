@@ -3,6 +3,8 @@ package Selection;
 import Model.PathX;
 import Populations.Population;
 
+import java.util.stream.Collectors;
+
 public class SelectionByIndexing implements ISelection {
 
     @Override
@@ -14,20 +16,8 @@ public class SelectionByIndexing implements ISelection {
 
             boolean isBetterAndNew = true;
 
-            if (children.get(i).getValue() > parents.get(i % parents.size()).getValue()) {
-
-                isBetterAndNew = false;
-            } else {
-                for (PathX p : parents) {
-
-                    if (children.get(i).getKey().equals(p.getKey())) {
-                        isBetterAndNew = false;
-                        break;
-                    }
-                }
-            }
-
-            if (isBetterAndNew)
+            if (children.get(i).getValue() < parents.get(i % parents.size()).getValue() &&
+            !parents.stream().map(PathX::getKey).collect(Collectors.toList()).contains(children.get(i).getKey()))
                 parents.set(i, new PathX(children.get(i)));
         }
     }
